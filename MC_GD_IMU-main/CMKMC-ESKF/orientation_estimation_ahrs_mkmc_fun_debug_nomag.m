@@ -33,6 +33,9 @@ function out=orientation_estimation_ahrs_mkmc_fun_debug(acc,gyro,fs,sigma_x) %(a
   %xi_m_x=20;
   %xi_m_y=20;
   %xi_m_z=20;
+  xi_m_x=0;
+  xi_m_y=0;
+  xi_m_z=0;
 
   % LinearAcclerationDecayFactor 
   nv=0.3;
@@ -199,9 +202,10 @@ for i=1:len
 
   % magDistErr=(K(10:12,:)*ze)';  note that X_=0
   %magDistPower = (norm(magDistErr.')).^2;
-  isJamming=(magDistPower>(MagSth^2));
+  %isJamming=(magDistPower>(MagSth^2));
+  isJamming=false;
   if(isJamming)
-    jamze=  gdiffer';
+    jamze= gdiffer';
     jamxe_post = K(1:9, 1:3) * jamze;
     orientErr = jamxe_post(1:3).';
     gyroOffsetErr = jamxe_post(4:6).';
@@ -302,8 +306,8 @@ out.acc=acc;
 out.XEE=XEE;
 out.offset=offset;
 out.THRESH=THRESH;
-out.Inc=Inc;
-out.MAGP=MAGP;
+%out.Inc=Inc;
+%out.MAGP=MAGP;
 out.ZE=ZE;
 
 end

@@ -2,18 +2,18 @@ clear all
 addpath(genpath(pwd));
 
 
-load('gait_0.5_magd.mat');
-IMU=gait;
+load('S0110_01_dict_frame.mat');
+IMU=data;
 
-fs=IMU.fs;
+fs=52; %Hz
 sample_freq=fs;
 
-Accelerometer=-IMU.Acceleration;
-Gyroscope=IMU.Gyroscope;
-Magnetic=IMU.Magnetic*100;
+Accelerometer=-IMU.S1094.acc;
+Gyroscope=IMU.S1094.gyr_rad;
+Magnetic= zeros(10932, 3);
 len=length(Accelerometer);
 
-% plot the raw data
+%% plot the raw data
 for i=1:len
     MagNorm(i)=norm(Magnetic(i,:));
 end
@@ -32,16 +32,9 @@ plot(time,Gyroscope)
 legend('x','y','z','interpreter','latex')
 ylabel('$y_{gyr}$','interpreter','latex')
 set(gca,'FontSize',16)
-x3=subplot(3,1,3);
-plot(time,Magnetic,time,MagNorm,'black')
-legend('x','y','z','norm','interpreter','latex')
-ylabel('$y_{mag}$','interpreter','latex')
 xlabel('$time/s$','interpreter','latex')
 set(gca,'FontSize',16)
-linkaxes([x1,x2,x3],'x')
-
-
-
+linkaxes([x1,x2],'x')
 
 %% MKMC
 MagSth=80;
@@ -53,7 +46,7 @@ sigma1=2*sigma_1*sigma_1;
 sigma2=2*sigma_2*sigma_2;
 xigma_x=[10^8 10^8 10^8 10^8 10^8 10^8 sigma1 sigma1 sigma1 sigma2 sigma2 sigma2]; 
 xigma_y=[10^8 10^8 10^8 10^8 10^8 10^8];
-mkmc_ahrs=orientation_estimation_ahrs_mkmc_fun_xsens(Accelerometer,Gyroscope,Magnetic,fs,xigma_x,xigma_y,MagSth);
+mkmc_ahrs=orientation_estimation_ahrs_mkmc_fun_debug(Accelerometer,Gyroscope,Magnetic,fs,xigma_x,xigma_y,MagSth);
 euler_mkmc=eulerd(mkmc_ahrs.Quat,'ZXY','frame');
 
 %% CMKMC
