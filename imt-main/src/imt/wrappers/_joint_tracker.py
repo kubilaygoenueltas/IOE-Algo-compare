@@ -18,7 +18,7 @@ class JointTracker1D(MethodWrapper):
         joint_angle = qmt.quatProject(qhat_cor, j2)["projAngle"]
         # the joint angle value always starts at zero with no wrapping effects
         joint_angle = np.unwrap(joint_angle)
-        joint_angle = joint_angle - joint_angle[0]
+        joint_angle = joint_angle # - joint_angle[0]  # without joint_angle[0] we get the real angle
 
         extras["joint_axis_direction"] = j2
         extras["joint_angle_rad"] = joint_angle

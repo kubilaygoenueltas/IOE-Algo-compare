@@ -100,7 +100,7 @@ title('Pitch Angle Difference between Two Sensors');
 grid on;
 
 %%
-X=time;
+X=time';
 Y=pitch_diff;
 ft = fittype('A*sin(2*pi*f*x + phi) + C', ...
     'independent', 'x', ...
@@ -121,3 +121,15 @@ plot(X, Y, 'b'); % Originaldaten
 plot(X, fit_result(X), 'r', 'LineWidth', 2); % Angepasste Sinuskurve
 legend('Original Signal', 'Angepasste Sinuskurve');
 hold off;
+
+%%
+% Compute pitch angle difference
+pitch_diff = pitch_diff-norm(fit_result(X)); % Absolute difference
+ 
+% Plot the results
+figure;
+plot(time, pitch_diff, 'b', 'LineWidth', 2);
+xlabel('Time (s)');
+ylabel('Pitch Angle Difference (degrees)');
+title('Pitch Angle Difference between Two Sensors');
+grid on;

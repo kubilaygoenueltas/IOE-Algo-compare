@@ -90,9 +90,41 @@ pitch2 = euler2(:,1);
 
 % Compute pitch angle difference
 pitch_diff = pitch1 - pitch2; % Absolute difference
-while i<50
-    pitch_diff(i) = pitch_diff(i) - 50*sind(pitch_diff(i));
-end
+ 
+% Plot the results
+figure;
+plot(time, pitch_diff, 'b', 'LineWidth', 2);
+xlabel('Time (s)');
+ylabel('Pitch Angle Difference (degrees)');
+title('Pitch Angle Difference between Two Sensors');
+grid on;
+
+%%
+X=time';
+Y=pitch_diff;
+ft = fittype('A*sin(2*pi*f*x + phi) + C', ...
+    'independent', 'x', ...
+    'coefficients', {'A', 'f', 'phi', 'C'});
+
+% Erste Schätzung für die Parameter
+A0 = (max(Y) - min(Y)) / 2;
+f0 = 1 / (max(X) - min(X));
+phi0 = 0;
+C0 = mean(Y);
+
+% Fit ausführen
+fit_result = fit(X, Y, ft, 'StartPoint', [A0, f0, phi0, C0]);
+
+% Angepasste Sinuskurve plotten
+hold on;
+plot(X, Y, 'b'); % Originaldaten
+plot(X, fit_result(X), 'r', 'LineWidth', 2); % Angepasste Sinuskurve
+legend('Original Signal', 'Angepasste Sinuskurve');
+hold off;
+
+%%
+% Compute pitch angle difference
+pitch_diff = pitch_diff/fit_result(X); % Absolute difference
  
 % Plot the results
 figure;
