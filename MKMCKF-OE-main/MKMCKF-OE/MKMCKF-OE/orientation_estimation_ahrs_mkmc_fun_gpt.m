@@ -54,22 +54,7 @@ for i=1:len
    accr=acc(i,:);
    gyror=gyro(i,:);
 
-   
-   %if(i==1)     % NED coordinate
-   %r_down = accr';
-   %r_east = [1;0;0]; % assume any direction?
-   %r_east = [-24.6226; 397.6748; -552.3066];
-   %r_north = cross(r_east, r_down);
-   
-   %r_down=r_down/norm(r_down);
-   %r_east=r_east/norm(r_east);
-   %r_north=r_north/norm(r_north);
-   
-   %R_=[r_north,r_east,r_down];
-   %Q__ = quaternion(R_, 'rotmat', 'frame');
-   %end
-
-   % without NED
+   %without NED
    if(i==1)
    Q__ = quaternion([1 0 0 0]); % Identity quaternion (neutral orientation)
    end
@@ -219,7 +204,7 @@ for i=1:len
    THRESH(i,:)=THE';
 end
 
-elu=eulerd(Quat,'YXZ','frame');
+elu=eulerd(Quat,'XYZ','frame');
 t=0:1/fs:1/fs*(len-1);
 
 out.t=t;

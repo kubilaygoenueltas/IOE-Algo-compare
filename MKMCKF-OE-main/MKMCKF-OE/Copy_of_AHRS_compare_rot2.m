@@ -93,15 +93,15 @@ euler_cmkmc_ahrs3=eulerd(cmkmc_ahrs3.Quat,'ZXY','frame');
 %% PLOTS
 figure
 x1=subplot(3,1,1);
-plot(time,euler_mkmc_ahrs(:,1),'blue',time,euler_cmkmc_ahrs(:,1),'green',time,euler_cmkmc_ahrs2(:,1),'black', time,euler_cmkmc_ahrs3(:,1),'red')
-legend('MKMC Yaw','CMKMC Yaw',  'CMKMC Yaw 2', 'CMKMC Yaw 3')
+plot(time,euler_mkmc_ahrs(:,1),'blue',time,euler_cmkmc_ahrs2(:,1),'green',time,euler_cmkmc_ahrs3(:,1),'black')
+legend('MKMC Yaw',  'CMKMC Yaw 2', 'CMKMC Yaw 3')
 set(gca,'FontSize',12)
 x2=subplot(3,1,2);
-plot(time,euler_mkmc_ahrs(:,2),'blue',time,euler_cmkmc_ahrs(:,2),'green',time,euler_cmkmc_ahrs2(:,2),'black', time,euler_cmkmc_ahrs3(:,2),'red')
-legend('MKMC Roll','CMKMC Roll', 'CMKMC Roll 2', 'CMKMC Roll 3')
+plot(time,euler_mkmc_ahrs(:,2),'blue',time,euler_cmkmc_ahrs2(:,2),'green',time,euler_cmkmc_ahrs3(:,2),'black')
+legend('MKMC Roll', 'CMKMC Roll 2', 'CMKMC Roll 3')
 set(gca,'FontSize',12)
 x3=subplot(3,1,3);
-plot(time,euler_mkmc_ahrs(:,3),'blue',time,euler_cmkmc_ahrs(:,3),'green',time,euler_cmkmc_ahrs2(:,3),'black', time,euler_cmkmc_ahrs3(:,3),'red')
-legend('MKMC Pitch','CMKMC Pitch', 'CMKMC Pitch 2', 'CMKMC Pitch 3')
+plot(time,euler_mkmc_ahrs(:,3),'blue',time,euler_cmkmc_ahrs2(:,3),'green',time,euler_cmkmc_ahrs3(:,3),'black')
+legend('MKMC Pitch', 'CMKMC Pitch 2', 'CMKMC Pitch 3')
 set(gca,'FontSize',12)
 linkaxes([x1,x2,x3],'x')
