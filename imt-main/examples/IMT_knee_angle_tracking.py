@@ -10,7 +10,7 @@ import pandas as pd
 
 # LOAD DATA
 file = "C:/Users/kubil/Documents/STUDIUM/Master/4_Masterarbeit_Code/IOE-Algo-compare/Daten/IMU/Dict_Frames/S0133_dict_frame.npy"  # noqa: E501
-file_camera2d = "C:/Users/kubil/Documents/STUDIUM/Master/4_Masterarbeit_Code/IOE-Algo-compare/Daten/IMU/Dict_Frames/S0133_Knee_angle_camera2d.txt"
+file_camera2d = "C:/Users/kubil/Documents/STUDIUM/Master/4_Masterarbeit_Code/IOE-Algo-compare/Daten/IMU/Knee_angle2d/S0133_Knee_angle_camera2d.txt"
 sensors = ["S0333", "S1094", "S0593", "S0994", "S0477"] # 5 Sensoren
 #sensors = ["S1094", "S0593", "S0994", "S0477"] # ohne Sternum, beide Knie
 #sensors = ["S1094", "S0593"]   # 2 Sensoren, nur Knie rechts
