@@ -53,20 +53,23 @@ for i in range(len(ring_angles_kl)):
     axes[i, 1].set_xlabel("Time [s]")
 
 
-
-    smoothed_arr = pd.Series(ring_angles_kl[i]).rolling(window=100, center=True).mean().to_numpy()
-    smoothed_arr2 = pd.Series(cam_angles_kl[i][:len(ring_angles_kl[i])]).rolling(window=100, center=True, min_periods=1).mean().to_numpy()
-    try:
+    if cam_angles_kl > ring_angles_kl:
+        smoothed_arr = pd.Series(ring_angles_kl[i]).rolling(window=100, center=True).mean().to_numpy()
+        smoothed_arr2 = pd.Series(cam_angles_kl[i][:len(ring_angles_kl[i])]).rolling(window=100, center=True, min_periods=1).mean().to_numpy()
         imu_to_camera2d_diff = smoothed_arr - smoothed_arr2
-    except ValueError as e:
-        imu_to_camera2d_diff = np.zeros(len(smoothed_arr))  # Assign None or another default value
+    else:
+        smoothed_arr = pd.Series(ring_angles_kl[i][:len(cam_angles_kl[i])]).rolling(window=100, center=True).mean().to_numpy()
+        smoothed_arr2 = pd.Series(cam_angles_kl[i]).rolling(window=100, center=True, min_periods=1).mean().to_numpy()
+        imu_to_camera2d_diff = smoothed_arr - smoothed_arr2
 
-    smoothed_arr3 = pd.Series(ring_angles_kr[i]).rolling(window=100, center=True).mean().to_numpy()
-    smoothed_arr4 = pd.Series(cam_angles_kr[i][:len(ring_angles_kr[i])]).rolling(window=100, center=True, min_periods=1).mean().to_numpy()
-    try:
+    if cam_angles_kr > ring_angles_kr:
+        smoothed_arr3 = pd.Series(ring_angles_kr[i]).rolling(window=100, center=True).mean().to_numpy()
+        smoothed_arr4 = pd.Series(cam_angles_kr[i][:len(ring_angles_kr[i])]).rolling(window=100, center=True, min_periods=1).mean().to_numpy()
         imu_to_camera2d_diff2 = smoothed_arr3 - smoothed_arr4
-    except ValueError as e:
-        imu_to_camera2d_diff2 = np.zeros(len(smoothed_arr3))  # Assign None or another default value
+    else:
+        smoothed_arr3 = pd.Series(ring_angles_kr[i][:len(cam_angles_kr[i])]).rolling(window=100, center=True).mean().to_numpy()
+        smoothed_arr4 = pd.Series(cam_angles_kr[i]).rolling(window=100, center=True, min_periods=1).mean().to_numpy()
+        imu_to_camera2d_diff2 = smoothed_arr3 - smoothed_arr4
 
     # Diagramm rechts
     axes[i, 2].plot(ts_ring[i], imu_to_camera2d_diff, label="Knie links", color="m")
