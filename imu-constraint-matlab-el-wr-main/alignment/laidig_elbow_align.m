@@ -59,7 +59,7 @@ for j = 1:max_iter
         [ee, j1, j2] = e22(ua_quat,fa_quat,w_rel,x); 
     end
     
-    err = ee'*ee
+    err = ee'*ee;
     
     x_prev = x; 
     x = x - pinv(JJ)*ee; 

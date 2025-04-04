@@ -29,7 +29,7 @@ for jj = 1:max_iter
     off1 = quatMultiply(off1,[1 0.5.*x(1:3)']);
     off2 = quatMultiply(off2,[1 0.5.*x(4:6)']);
     
-    er = ee'*ee
+    er = ee'*ee;
     ii = ii+1;
 
     if jj ~=1 && all(abs((x-x_prev)./x) < .001)

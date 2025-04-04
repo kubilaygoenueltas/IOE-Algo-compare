@@ -41,7 +41,6 @@ KK1 = K(fa.gyr,gyr_dot1);
 gyr_dot2 = omDot(ha.gyr,dT); 
 KK2 = K(ha.gyr,gyr_dot2); 
 
-
 n = size(gyr_dot1,1); 
 I = eye(3); O = zeros(3); 
 Q = eye(6).*gyrNoise.^2; 
@@ -58,6 +57,7 @@ G = eye(6).*dT;
 P = Q; 
 X = [1;0;0;0;1;0;0;0]; 
 
+
 for i = 1:n
     % Nominal state (4.54a)
     gyr1 = fa.gyr(i+2,:); 
@@ -73,7 +73,6 @@ for i = 1:n
     C2 = (X(5)^2-X(6:8)'*X(6:8)).*eye(3) + 2*X(6:8)*X(6:8)' + 2*X(5)*skew(X(6:8));
 
     F = [I-skew(gyr1).*dT O; O I-skew(gyr2).*dT];
-
     P = F*P*F'+G*Q*G'; 
 
     a1 = fa.acc(i+2,:)'-KK1(i*3-2:i*3,:)*lUA;
@@ -86,10 +85,8 @@ for i = 1:n
     
     H(4,:) = [[0 0 1]*J1*[0;0;1], 0, -[1 0 0]*J1*[0;0;1], -[0 1 0]*J2*[0;1;0], [1 0 0]*J2*[0;1;0], 0]; 
 
-
     k =  P*H'*(H*P*H'+R)^-1;
     x = k*([(C1*a1 - C2*a2);- [0 1 0]*transpose(C1)*C2*[0; 0; 1]]); % wrist
-
 
     P=(eye(6)-k*H)*P;
 
