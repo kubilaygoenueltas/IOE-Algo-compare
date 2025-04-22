@@ -7,7 +7,7 @@
 
 // compile:
 // g++ -O3 -I .\eigen-3.4.0 kinematics.cpp run_map_acc.cpp map_acc.cpp -o map_acc
-// run:
+// run
 // open git bash,  execute ./run_map_acc.sh 
 
 
