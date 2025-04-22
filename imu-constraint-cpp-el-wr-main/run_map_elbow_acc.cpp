@@ -121,7 +121,11 @@ int main(int argc, char **argv)
     std::cout << "running filter... " << std::endl; 
     ArrayXXd out = map_elbow_acc(gyro1, accel1, gyro2, accel2, freq, priNoise, gyrNoise, conNoise, dofNoise, rUA2, rFA, q1_imu, q2_imu, tol, lam, max_iter); 
 
-    std::ofstream myfile ("out.txt");
+    size_t pos1 = file.find("/");
+    size_t pos2 = file.find(".");
+    std::string name = file.substr((pos1 + 1), (pos2 - pos1 - 1));
+    
+    std::ofstream myfile (("out/" + name + "_map_dof.txt").c_str());
     if (myfile.is_open())
     {
          myfile << out;

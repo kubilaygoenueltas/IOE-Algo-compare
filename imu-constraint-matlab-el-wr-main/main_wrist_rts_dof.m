@@ -23,7 +23,7 @@ fields = fieldnames(IMU);
 IMU = IMU.(fields{1});
 % Daten transformieren um an KOS anzupassen
 % Transformationsmatrix
-T = [0 0 -1; 0 -1 0; 1 0 0]; % I-Pose
+T = [0 1 0; 1 0 0; 0 0 1]; % I-Pose
 %T = [1 0 0; 0 1 0; 0 0 1];
 % Transformation: jeder Zeile wird der neue Punkt zugeordnet. um Dimensionen anzupassen, muss transponiert werden.
 %data = (T * IMU.S1094.acc')';

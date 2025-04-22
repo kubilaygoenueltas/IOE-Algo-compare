@@ -5,7 +5,7 @@
 # run:
 # open git bash,  execute ./run_map_acc.sh 
 
-freq=128.0 
+freq=52 
 priNoise=1.0
 gyrNoise=0.005
 conNoise=0.04
@@ -13,7 +13,7 @@ tol=0.01
 lam=1e-8
 max_iter=25
 
-file="C:\Users\howar\Documents\cpp-code2\filter-development\data\S01ImuData_uafa.txt"
+file="C:/Users/kubil/Documents/STUDIUM/Master/4_Masterarbeit_Code/IOE-Algo-compare/Daten/TXT_crab/S0133_dict_frame.txt"
 rUA2=(-0.111186980425604, -0.0147510320541111, 0.0447595702615915)	
 rFA=(0.171656430869623, -0.0245042422329814, 0.0398833178232241)
 q1_imu=(0.139547584090428, 0.785105542601398, 0.60021792796274, 0.0622430534534179)

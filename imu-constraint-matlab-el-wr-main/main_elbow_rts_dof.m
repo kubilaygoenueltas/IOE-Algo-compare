@@ -16,7 +16,7 @@ addpath(genpath('./alignment'));
 addpath(genpath('./kinematics')); 
 addpath(genpath('C:/Users/kubil/Documents/STUDIUM/Master/4_Masterarbeit_Code/IOE-Algo-compare/Daten/MAT'))
 %% load the data
-IMU=load('S0133_dict_frame.mat');
+IMU=load('S0105_dict_frame.mat');
 fields = fieldnames(IMU);
 IMU = IMU.(fields{1});
 % Daten transformieren um an KOS anzupassen
