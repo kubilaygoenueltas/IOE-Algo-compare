@@ -22,9 +22,9 @@ def convert_numpy_to_txt(src_dir, dst_dir):
             
             # Combine the data into the requested format
             combined_data = np.hstack((
-                s1094_acc,    # Columns 1-3
+                s1094_acc,    # Columns 1-3         # rechter Oberschenkel
                 s1094_gyr,    # Columns 4-6
-                s0593_acc,    # Columns 7-9
+                s0593_acc,    # Columns 7-9         # rechter Unterschenkel
                 s0593_gyr     # Columns 10-12
             ))
             
