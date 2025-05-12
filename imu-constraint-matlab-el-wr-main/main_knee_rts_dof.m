@@ -44,10 +44,10 @@ fa.gyr=(T * IMU.S0593.gyr_rad')';
 
 % parameters
 freq = 52; % Hz
-gyr_noise = 0.017;   
-con_acc_rts_acc = 0.02; % Increased from 0.02 (elbow) due to soft tissue artifacts
-con_acc_rts_dof = 0.01;
-con_dof_rts_dof = 0.02; % Increased from 0.02 (elbow) to account for slight natural varus/valgus
+gyr_noise = 0.005;   
+con_acc_rts_acc = 0.05; % Increased from 0.02 (elbow) due to soft tissue artifacts
+con_acc_rts_dof = 0.04;
+con_dof_rts_dof = 0.04; % Increased from 0.02 (elbow) to account for slight natural varus/valgus
 
 
 %% solve for translation alignment
