@@ -5,8 +5,8 @@ import os
 from label_IMU import label_extract, label_extract_legrise # 'Extended Leg', 'Stiff Movement'
 
 # LOAD DATA
-path_data = "C:/Users/kubil/Documents/STUDIUM/Master/4_Masterarbeit_Code/IOE-Algo-compare/Daten/"
-results_path = "C:/Users/kubil/Documents/STUDIUM/Master/4_Masterarbeit_Code/IOE-Algo-compare/imt-main/examples/results"
+path_data = "../Daten/"
+results_path = "../imt-main/examples/results"
 folder_data_imu = path_data + "Dict_Frames/"
 folder_data_cam = path_data + "Knee_angle2d/"
 filenames_imu = [str(f) for f in Path(folder_data_imu).rglob('*') if f.is_file()]  # all filnames in array
@@ -46,8 +46,8 @@ for i in range(len(filenames_imu)):
 
 imu_data_lengths = [len(seq[1]['acc']) if 1 in seq and 'acc' in seq[1] else None for seq in imu_data_all]
 
-path_stiffMovement = "C:/Users/kubil/Documents/STUDIUM/Master/4_Masterarbeit_Code/IOE-Algo-compare/Daten/Label/Stiff/"
-path_extendedLeg = "C:/Users/kubil/Documents/STUDIUM/Master/4_Masterarbeit_Code/IOE-Algo-compare/Daten/Label/Extended_Legs/"
+path_stiffMovement = "../Daten/Label/Stiff/"
+path_extendedLeg = "../Daten/Label/Extended_Legs/"
 behavior_extendedLeg = 'Extended Leg'
 behavior_stiffMovement= 'Stiff Movement'
 labels_extendedLeg = []
@@ -112,7 +112,7 @@ for i, file in enumerate(os.listdir(path_stiffMovement)):
                 })
 
 #### SAVE RESULTS
-path_results = "C:/Users/kubil/Documents/STUDIUM/Master/4_Masterarbeit_Code/IOE-Algo-compare/Klassifikation/results" 
+path_results = "./results" 
 os.makedirs(path_results, exist_ok=True) # check if directory exists
 np.save(os.path.join(path_results, "labels_extendedLeg_52.npy"), np.array(labels_extendedLeg, dtype=object))  # Save files to results path
 np.save(os.path.join(path_results, "labels_stiffMovement_52.npy"), np.array(labels_stiffMovement, dtype=object))
