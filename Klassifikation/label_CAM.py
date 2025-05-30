@@ -27,8 +27,8 @@ for i, file in enumerate(os.listdir(path_extendedLeg)):
             interval = np.arange(0, len(ring_angles_kl[i]))
 
             # call label_extract function
-            behavior_label, behavior_label_5s, start_frames_single = my.label_extract_100(
-                all_labels, behavior_extendedLeg, interval)
+            behavior_label, behavior_label_5s, start_frames_single = my.label_extract(
+                all_labels, behavior_extendedLeg, interval, 30)
 
             # Store results
             labels_extendedLeg.append({
@@ -50,8 +50,8 @@ for i, file in enumerate(os.listdir(path_stiffMovement)):
             interval = np.arange(0, len(ring_angles_kl[i]))
 
             # call label_extract_legrise function
-            behavior_label, behavior_label_5s = my.label_extract_legrise_100(
-                all_labels, behavior_stiffMovement, interval, labels_extendedLeg[i]['start_frames_single'])
+            behavior_label, behavior_label_5s = my.label_extract_legrise(
+                all_labels, behavior_stiffMovement, interval, labels_extendedLeg[i]['start_frames_single'], 30)
 
             # Store results
             labels_stiffMovement.append({
