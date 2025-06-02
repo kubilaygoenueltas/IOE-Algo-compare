@@ -13,6 +13,7 @@ import os
 from sklearn.pipeline import make_pipeline
 from sklearn.discriminant_analysis import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
+import pandas as pd
 
 # Beispiel: Eingabedaten (X) und Zielvariable (y)
 # X: Merkmale [knee_angle_left, knee_angle_right]
@@ -63,7 +64,7 @@ y = np.concatenate(y)       # shape (total_samples,)
 groups = np.array(groups)   # shape (total_samples,)
 
 # Check consistency
-print(f"X shape: {X.shape}, y shape: {y.shape}, groups shape: {groups.shape}")
+#print(f"X shape: {X.shape}, y shape: {y.shape}, groups shape: {groups.shape}")
 
 #### Initialize classifier
 clf = LogisticRegression(
@@ -112,7 +113,7 @@ for train_idx, test_idx in cv.split(X, y, groups):
     f1_scores.append(f1_score(y_test, y_pred, zero_division=0))
 
 #### OUTPUT PRINT
-print("Evaluation Metrics per Fold:\n")
+"""print("Evaluation Metrics per Fold:\n")
 
 for i in range(len(balanced_scores)):
     print(f"Fold {i+1}:")
@@ -128,7 +129,7 @@ for i in range(len(balanced_scores)):
     # Print confusion matrix
     print(f"Fold {i+1} Confusion Matrix:")
     print(confusion_matrix(y_test, y_pred))
-    print()
+    print()"""
 
 print("Mean Metrics Across Folds:")
 print(f"Mean Balanced Accuracy: {np.mean(balanced_scores):.3f}")
